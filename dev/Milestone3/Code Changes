@@ -1,0 +1,20 @@
+HR Module:
+- Deleted Constraint object and Controller, responsibilities merged into Shift
+- Cleaned redundant methods from controllers and services and lowered logic from presentation layer into business layer (ShiftController now holds EmployeeController
+- Added Transport Manager into the system
+- CLIPresentation Layer: Changed addShift in ShiftMenu to use Builder Design Pattern instead
+- DAL now uses lazy-load with DAO connected to DB
+
+Transport Module:
+- Added enum of the TruckModel, TransportStatus and OrderStatus.
+- Constraints were added regarding the placement of a truck and transport drivers.
+- Change to holding keys for some of the objects for the purpose of making logical connections lke transport document.
+- Use information about products and their weight to prevent weight deviations.
+- Use the factory to create documents by objects from other layers.
+- CLIPresentation Layer: Switch  work in the smart format that Roi T. created for menus and the use of HumanInteraction.
+- DAL now uses lazy-load with DAO connected to DB
+
+Globals:
+- Added HumanInteraction class
+- Added Supplier Design pattern
+

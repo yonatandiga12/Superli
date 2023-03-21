@@ -1,0 +1,3 @@
+EmployeesMenu - manageEmployee will terminate the program if entered non-existent id - fixed
+ShiftsMenu - cant create new shift because no shiftmanager has constraint because the shift doesn't exist - fixed
+ShiftsMenu - removeShift will terminate if given date and type of a non-existing shift - fixed

@@ -1,0 +1,89 @@
+CREATE TABLE "Category" (
+	"ID"	INTEGER,
+	"Name"	TEXT NOT NULL,
+	"Parent"	INTEGER,
+	PRIMARY KEY("ID"),
+	FOREIGN KEY("Parent") REFERENCES "Category"("ID")
+);
+
+CREATE TABLE "Product" (
+	"ID"	INTEGER,
+	"Category"	INTEGER NOT NULL,
+	"Name"	TEXT NOT NULL,
+	"Weight"	REAL NOT NULL,
+	"Manufacturer"	TEXT NOT NULL,
+	"Price"	REAL NOT NULL,
+	FOREIGN KEY("Category") REFERENCES "Category"("ID"),
+	PRIMARY KEY("ID")
+);
+
+CREATE TABLE "DefectiveItems" (
+	"ReportID"	INTEGER,
+	"StoreID"	TEXT NOT NULL,
+	"ProductID"	INTEGER NOT NULL,
+	"Date"	TEXT NOT NULL,
+	"Amount"	INTEGER NOT NULL,
+	"EmployeeID"	INTEGER NOT NULL,
+	"Description"	TEXT NOT NULL,
+	"Defect"	TEXT NOT NULL,
+	"InWarehouse"	INTEGER NOT NULL,
+	FOREIGN KEY("ProductID") REFERENCES "Product"("ID"),
+	PRIMARY KEY("ReportID")
+);
+
+CREATE TABLE "Location" (
+	"LocationID"	INTEGER,
+	"Product"	INTEGER NOT NULL,
+	"StoreID"	INTEGER NOT NULL,
+	"inWarehouse"	INTEGER NOT NULL,
+	FOREIGN KEY("Product") REFERENCES "Product"("ID"),
+	PRIMARY KEY("LocationID")
+);
+
+CREATE TABLE "LocationToShelf" (
+	"LocationID"	INTEGER,
+	"Shelf"	INTEGER,
+	FOREIGN KEY("LocationID") REFERENCES "Location"("LocationID"),
+	PRIMARY KEY("LocationID","Shelf")
+);
+
+CREATE TABLE "Sales" (
+	"SaleID"	INTEGER,
+	"startDate"	TEXT NOT NULL,
+	"endDate"	TEXT NOT NULL,
+	"Percent"	INTEGER NOT NULL,
+	PRIMARY KEY("SaleID")
+);
+
+CREATE TABLE "SalesToCategory" (
+	"SaleID"	INTEGER,
+	"CategoryID"	INTEGER,
+	FOREIGN KEY("SaleID") REFERENCES "Sales"("SaleID"),
+	FOREIGN KEY("CategoryID") REFERENCES "Category"("ID"),
+	PRIMARY KEY("SaleID","CategoryID")
+);
+
+CREATE TABLE "SalesToProduct" (
+	"SaleID"	INTEGER,
+	"ProductID"	INTEGER,
+	FOREIGN KEY("ProductID") REFERENCES "Product"("ID"),
+	FOREIGN KEY("SaleID") REFERENCES "Sales"("SaleID"),
+	PRIMARY KEY("SaleID","ProductID")
+);
+
+CREATE TABLE "StockReport" (
+	"StoreID"	INTEGER,
+	"ProductID"	INTEGER,
+	"AmountInStore"	INTEGER NOT NULL,
+	"AmountInWarehouse"	INTEGER NOT NULL,
+	"minStore"	INTEGER NOT NULL,
+	"targetStore"	INTEGER NOT NULL,
+	"AmountInDelivery"	INTEGER NOT NULL,
+	FOREIGN KEY("ProductID") REFERENCES "Product"("ID"),
+	PRIMARY KEY("StoreID","ProductID")
+);
+
+CREATE TABLE "Stores" (
+	"Id"	INTEGER,
+	PRIMARY KEY("Id")
+);

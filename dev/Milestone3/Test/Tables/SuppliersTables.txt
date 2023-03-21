@@ -1,0 +1,93 @@
+
+CREATE TABLE "AgreementItem" (
+	"SupplierID"	INTEGER,
+	"ProductID"	INTEGER,
+	"Manufacturer"	TEXT NOT NULL,
+	"PricePerUnit"	REAL NOT NULL,
+	"IdBySupplier"	INTEGER NOT NULL,
+	PRIMARY KEY("SupplierID","ProductID"),
+	FOREIGN KEY("ProductID") REFERENCES "Product"("ID"),
+	FOREIGN KEY("SupplierID") REFERENCES "Supplier"("ID")
+);
+
+CREATE TABLE "BulkPrices" (
+	"ProductID"	INTEGER,
+	"SupplierID"	INTEGER,
+	"Quantity"	INTEGER NOT NULL,
+	"Discount"	INTEGER NOT NULL,
+	FOREIGN KEY("ProductID") REFERENCES "Product"("ID"),
+	PRIMARY KEY("ProductID","SupplierID","Quantity")
+);
+
+CREATE TABLE "ByOrder" (
+	"SupplierID"	INTEGER,
+	"Time"	INTEGER,
+	PRIMARY KEY("Time","SupplierID"),
+	FOREIGN KEY("SupplierID") REFERENCES "Supplier"("ID")
+);
+
+CREATE TABLE "OrderItem" (
+	"ProductID"	INTEGER,
+	"OrderID"	INTEGER,
+	"IDBySupplier"	INTEGER NOT NULL,
+	"Quantity"	INTEGER NOT NULL,
+	"PricePerUnit"	REAL NOT NULL,
+	"Discount"	INTEGER NOT NULL,
+	"FinalPrice"	REAL NOT NULL,
+	"MissingItems"	INTEGER,
+	"DefectiveItems"	INTEGER,
+	"description"	TEXT,
+	"Weight"	REAL NOT NULL,
+	FOREIGN KEY("OrderID") REFERENCES "Orders"("OrderId"),
+	PRIMARY KEY("ProductID","OrderID")
+);
+
+CREATE TABLE "Orders" (
+	"OrderId"	INTEGER,
+	"SupplierID"	INTEGER NOT NULL,
+	"StoreId"	INTEGER NOT NULL,
+	"CreationTime"	INTEGER,
+	"ArrivalTime"	INTEGER,
+	"Status"	TEXT,
+	FOREIGN KEY("SupplierID") REFERENCES "Supplier"("ID"),
+	PRIMARY KEY("OrderId")
+);
+
+CREATE TABLE "Routine" (
+	"SupplierID"	INTEGER,
+	"Day"	INTEGER,
+	"LastOrderID"	INTEGER NOT NULL,
+	PRIMARY KEY("SupplierID","Day"),
+	FOREIGN KEY("LastOrderID") REFERENCES "Orders"("OrderId"),
+	FOREIGN KEY("SupplierID") REFERENCES "Supplier"("ID")
+);
+
+CREATE TABLE "SelfTransport" (
+	"SupplierID"	INTEGER,
+	PRIMARY KEY("SupplierID")
+);
+
+CREATE TABLE "Supplier" (
+	"ID"	INTEGER,
+	"Bank"	INTEGER NOT NULL,
+	"Address"	TEXT NOT NULL,
+	"Name"	TEXT NOT NULL,
+	"Payment Agreement"	TEXT NOT NULL,
+	"AgreementType"	INTEGER,
+	PRIMARY KEY("ID")
+);
+
+CREATE TABLE "SupplierContacts" (
+	"SupplierID"	INTEGER,
+	"Name"	INTEGER NOT NULL,
+	"Phone"	TEXT NOT NULL,
+	PRIMARY KEY("SupplierID","Name"),
+	FOREIGN KEY("SupplierID") REFERENCES "Supplier"("ID")
+);
+
+CREATE TABLE "SupplierToManufacturer" (
+	"SupplierID"	INTEGER,
+	"Manufacturer"	INTEGER,
+	FOREIGN KEY("SupplierID") REFERENCES "Supplier"("ID"),
+	PRIMARY KEY("SupplierID","Manufacturer")
+);

@@ -1,0 +1,169 @@
+CREATE TABLE "Carriers" (
+	"id"	TEXT,
+	"name"	TEXT,
+	"bankDetails"	TEXT,
+	"salary"	INTEGER,
+	"employmentConditions"	TEXT,
+	"startingDate"	INTEGER,
+	PRIMARY KEY("id")
+);
+
+CREATE TABLE "CarriersLicenses" (
+	"emplyeeID"	TEXT,
+	"license"	TEXT,
+	PRIMARY KEY("emplyeeID","license")
+);
+
+
+CREATE TABLE "Cashiers" (
+	"id"	TEXT,
+	"name"	TEXT,
+	"bankDetails"	TEXT,
+	"salary"	INTEGER,
+	"employmentConditions"	TEXT,
+	"startingDate"	INTEGER,
+	PRIMARY KEY("id")
+);
+
+CREATE TABLE "ConstraintsEmployees" (
+	"constraintID"	TEXT,
+	"employeeID"	TEXT,
+	PRIMARY KEY("constraintID","employeeID")
+);
+
+CREATE TABLE "EmployeesCertifications" (
+	"employeeId"	TEXT,
+	"certification"	TEXT,
+	PRIMARY KEY("employeeId","certification")
+);
+
+
+CREATE TABLE "EmployeesType" (
+	"eId"	TEXT,
+	"type"	TEXT,
+	PRIMARY KEY("eId")
+);
+
+
+CREATE TABLE "EveningShifts" (
+	"id"	TEXT,
+	"date"	INTEGER,
+	"shiftManagerId"	TEXT,
+	"carrierCount"	INTEGER,
+	"cashierCount"	INTEGER,
+	"storekeeperCount"	INTEGER,
+	"sorterCount"	INTEGER,
+	"hr_managersCount"	INTEGER,
+	"logistics_managersCount"	INTEGER,
+	"transportManager"	INTEGER,
+	PRIMARY KEY("id")
+);
+
+
+CREATE TABLE "HRManagers" (
+	"id"	TEXT,
+	"name"	TEXT,
+	"bankDetails"	TEXT,
+	"salary"	INTEGER,
+	"employmentConditions"	TEXT,
+	"startingDate"	INTEGER,
+	PRIMARY KEY("id")
+);
+
+
+CREATE TABLE "Logistics_Manager" (
+	"id"	TEXT,
+	"name"	TEXT,
+	"bankDetails"	TEXT,
+	"salary"	INTEGER,
+	"employmentConditions"	TEXT,
+	"startingDate"	INTEGER,
+	PRIMARY KEY("id")
+);
+
+CREATE TABLE "MorningShifts" (
+	"id"	TEXT,
+	"date"	INTEGER,
+	"shiftManagerId"	TEXT,
+	"carrierCount"	INTEGER,
+	"cashierCount"	INTEGER,
+	"storekeeperCount"	INTEGER,
+	"sorterCount"	INTEGER,
+	"hr_managersCount"	INTEGER,
+	"logistics_managersCount"	INTEGER,
+	"transportManager"	INTEGER,
+	PRIMARY KEY("id")
+);
+
+CREATE TABLE "ShiftsCarriers" (
+	"shiftId"	TEXT,
+	"employeeId"	TEXT
+);
+
+CREATE TABLE "ShiftsCashiers" (
+	"shiftId"	TEXT,
+	"employeeId"	TEXT,
+	PRIMARY KEY("shiftId","employeeId")
+);
+
+
+CREATE TABLE "ShiftsHRManagers" (
+	"shiftId"	TEXT,
+	"employeeId"	TEXT
+);
+
+
+
+CREATE TABLE "ShiftsLogisticManagers" (
+	"shiftId"	TEXT,
+	"employeeId"	TEXT
+);
+
+
+CREATE TABLE "ShiftsSorters" (
+	"shiftId"	TEXT,
+	"employeeId"	TEXT
+);
+CREATE TABLE "ShiftsStorekeepers" (
+	"shiftId"	TEXT,
+	"employeeId"	TEXT
+);
+
+
+CREATE TABLE "ShiftsTransportManagers" (
+	"shiftId"	TEXT,
+	"employeeId"	TEXT
+);
+
+
+CREATE TABLE "Sorters" (
+	"id"	TEXT,
+	"name"	TEXT,
+	"bankDetails"	TEXT,
+	"salary"	INTEGER,
+	"employmentConditions"	TEXT,
+	"startingDate"	INTEGER,
+	PRIMARY KEY("id")
+);
+
+
+CREATE TABLE "Storekeepers" (
+	"id"	TEXT,
+	"name"	TEXT,
+	"bankDetails"	TEXT,
+	"salary"	INTEGER,
+	"employmentConditions"	TEXT,
+	"startingDate"	INTEGER,
+	PRIMARY KEY("id")
+);
+
+
+CREATE TABLE "TransportManagers" (
+	"id"	TEXT,
+	"name"	TEXT,
+	"bankDetails"	TEXT,
+	"salary"	INTEGER,
+	"employmentConditions"	TEXT,
+	"startingDate"	INTEGER,
+	PRIMARY KEY("id")
+);

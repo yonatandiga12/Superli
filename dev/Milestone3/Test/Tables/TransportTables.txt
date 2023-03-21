@@ -1,0 +1,65 @@
+CREATE TABLE "Destinations" (
+	"id"	INTEGER,
+	"storekeeperID"	TEXT,
+	"contactPhoneNumber"	TEXT,
+	"fullAdress"	TEXT,
+	"ShippingArea"	TEXT
+);
+
+CREATE TABLE "DestinationsDocuments" (
+	"orderID"	INTEGER,
+	"destID"	TEXT,
+	"products"	TEXT
+);
+
+CREATE TABLE "Sources" (
+	"id"	INTEGER,
+	"address"	TEXT,
+	"shippingArea"	TEXT,
+	"storekeeperID"	TEXT,
+	"contactPhoneNumber"	TEXT
+);
+
+CREATE TABLE "TransportDestination" (
+	"transportId"	INTEGER,
+	"destinationId"	INTEGER
+);
+
+CREATE TABLE "TransportDocument" (
+	"transportId"	INTEGER,
+	"date"	TEXT,
+	"trackNumber"	INTEGER,
+	"driverName"	TEXT,
+	"doRedesign"	INTEGER,
+	"reDesign"	TEXT,
+	"destDocSN"	INTEGER
+);
+
+CREATE TABLE "TransportOrders" (
+	"TransportId"	INTEGER,
+	"OrderId"	INTEGER
+);
+
+CREATE TABLE "TransportSources" (
+	"trnsportId"	INTEGER,
+	"SorceId"	INTEGER
+);
+
+CREATE TABLE "Transports" (
+	"id"	INTEGER,
+	"startTime"	TEXT,
+	"endTime"	TEXT,
+	"carrierId"	TEXT,
+	"trackLn"	INTEGER,
+	"trackWeight"	INTEGER,
+	"status"	TEXT,
+	"date"	INTEGER,
+	"shiftType"	TEXT
+);
+
+CREATE TABLE "Trucks" (
+	"LicenseNumber"	TEXT,
+	"model"	TEXT,
+	"netWeight"	INTEGER,
+	"maxCapacityWeight"	INTEGER
+);
